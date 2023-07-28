@@ -1,0 +1,129 @@
+:root {
+  font-family: "Comfortaa", cursive;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Oxygen", sans-serif;
+  font-family: "Oxygen Mono", monospace;
+}
+
+body {
+  min-height: 100vh;
+  background: rgb(84, 160, 191);
+  background: linear-gradient(
+    180deg,
+    rgba(84, 160, 191, 1) 0%,
+    rgba(219, 70, 158, 1) 98%
+  );
+  color: rgb(230, 230, 230);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 80vw;
+  height: 70vh;
+  background-color: #3c4660;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  
+}
+
+h1 {
+  width: 100%;
+}
+
+#settingsBox {
+  width: 10rem;
+  position: relative;
+  left: -1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.colorBox {
+    width: 90%;
+    height: 10%;
+    background-color: red;
+    align-self: auto;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+#switchContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  place-items: center;
+}
+
+h3 {
+  display: inline;
+}
