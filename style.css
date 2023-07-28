@@ -35,13 +35,14 @@ h1 {
 }
 
 #settingsBox {
-  width: 10rem;
+  width: 15rem;
   position: relative;
   left: -1rem;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin: 20px;
+  margin: 30px;
+  margin-left: 60px;
 }
 
 .colorBox {
@@ -81,7 +82,11 @@ h1 {
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #455058;
+}
+
+input:checked + .slider::before {
+  background-color: #222425;
 }
 
 input:focus + .slider {
@@ -126,4 +131,14 @@ input:checked + .slider:before {
 
 h3 {
   display: inline;
+}
+
+.unselected {
+  opacity: 0.25;
+}
+
+#inputColor {
+  padding: 5px;
+  border-radius: 5px;
+  
 }

@@ -4,26 +4,36 @@ const range = document.getElementById("range")
 const textRangeValue = document.getElementById("rangePerValue")
 const altColor = document.getElementById("altColor")
 const checkBox = document.querySelector("input[type='checkbox']");
+const darkenTitle = document.getElementById("darkenTitle")
+const laghtenTitle = document.getElementById("laghtenTitle")
+const altParagraph = document.getElementById("altParagraph")
 
 
 let newColorGlobal;
 
+const isValidHex = (hex) => {
+    if(!hex) return false;
+    console.log(hex)
+    const strippedHex = hex.replace('#', '');
+    return strippedHex.length === 3 || strippedHex.length === 6;
+}
 
 
-const validHexRegex = /^#[0-9a-fA-F]{6}$/; // Move this outside the event listener
 
-inputColor.addEventListener("keypress", function(e) {
-    if (e.key === 'Enter') {
+inputColor.addEventListener("keyup", function(e) {
+    // if (e.key === 'Enter') {
         let inputText = e.target.value.trim();
-        
-        if (validHexRegex.test(inputText)) {
+        const hex = inputColor.value;
+        if (isValidHex(inputColor.value)) {
             let newColor = newShade(inputColor.value, range.value);
             
-    
-            changeBackground(inputColor.value, basicColor);
-            newColorGlobal = newColor;
+            
+            
+            const strippedHex = hex.replace('#', '');
+            newColorGlobal = `#${strippedHex}`;
+            changeBackground(newColorGlobal, basicColor);
         }
-    }
+    // }
 });
 range.oninput = displayPercentage;
 function displayPercentage(){
@@ -38,6 +48,7 @@ function displayPercentage(){
     textRangeValue.innerText = `${range.value}%`
     
     changeBackground(newColor, altColor)
+    altParagraph.textContent = `Altered color: ${newColor}`
     
 }
 
@@ -49,13 +60,24 @@ function changeBackground(color, div){
     
 }
 
-// checkBox.addEventListener("change", function(){
-//     changeBackground()
-// })
+checkBox.addEventListener("change", function(){
+    if (checkBox.checked){
+        darkenTitle.classList.remove("unselected")
+        laghtenTitle.classList.add("unselected")
+    }else{
+        darkenTitle.classList.add("unselected")
+        laghtenTitle.classList.remove("unselected")
+    }
+})
 
 
 function newShade(hexColor, magnitude) {
     hexColor = hexColor.replace(`#`, ``);
+    if(hexColor.length === 3) {
+        hexColor = hexColor[0] + hexColor[0]
+        + hexColor[1] + hexColor[1]
+        + hexColor[2] + hexColor[2];
+      }
     if (hexColor.length === 6) {
         const decimalColor = parseInt(hexColor, 16);
         const scaledMagnitude = Math.round((magnitude / 100) * 255);
